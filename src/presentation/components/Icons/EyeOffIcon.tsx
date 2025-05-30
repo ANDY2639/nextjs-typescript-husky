@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const EyeOffIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'EyeOff'}
-      data-test-id={id ?? 'EyeOff'}
+      id={id ?? "EyeOff"}
+      data-test-id={id ?? "EyeOff"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 20}
       height={height ?? 20}
@@ -17,7 +17,7 @@ const EyeOffIcon = ({ id, width, height, ...rest }: Props) => {
         fill="#18181B"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default EyeOffIcon
+export default EyeOffIcon;

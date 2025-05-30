@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import { Avatar } from "@heroui/react";
-import { clsx } from "clsx"
+import { clsx } from "clsx";
 
 interface NavbarProps {
-  isMobile: boolean
+  isMobile: boolean;
   isSidebarOpen: boolean;
   pathname: string;
   user: {
@@ -13,27 +13,20 @@ interface NavbarProps {
   };
 }
 
-const Navbar: React.FC<NavbarProps> = ({isMobile, isSidebarOpen, pathname, user }) => {  
-
+const Navbar: React.FC<NavbarProps> = ({ isMobile, isSidebarOpen, pathname, user }) => {
   return (
-    <nav 
-      className={
-        clsx(
-        "fixed left-0 right-0 h-16 flex items-center justify-between px-4 border-b border-gray-300 z-30 bg-white top-0",
-        {
-          "top-14": isMobile,
-          "ml-64": !isMobile && isSidebarOpen,
-          "ml-0": isMobile || !isSidebarOpen,
-        }
-      )}
+    <nav
+      className={clsx("fixed top-0 right-0 left-0 z-30 flex h-16 items-center justify-between border-b border-gray-300 bg-white px-4", {
+        "top-14": isMobile,
+        "ml-64": !isMobile && isSidebarOpen,
+        "ml-0": isMobile || !isSidebarOpen,
+      })}
     >
-      <span className="text-sm font-medium ml-0 md:ml-10">{pathname}</span>
+      <span className="ml-0 text-sm font-medium md:ml-10">{pathname}</span>
 
       <div className="flex items-center space-x-3">
-        <Avatar name="U" />        
-        {!isMobile && (
-          <span className="text-sm font-medium">{user.name}</span>
-        )}
+        <Avatar name="U" />
+        {!isMobile && <span className="text-sm font-medium">{user.name}</span>}
       </div>
     </nav>
   );

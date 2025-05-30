@@ -5,7 +5,7 @@ export type ForgotPasswordFormValues = {
 };
 
 export const forgotPasswordInitialValues: ForgotPasswordFormValues = {
-  username: '',
+  username: "",
 };
 
 export const forgotPasswordFormValidationSchema = Yup.object().shape({

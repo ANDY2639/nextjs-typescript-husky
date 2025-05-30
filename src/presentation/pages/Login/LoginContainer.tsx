@@ -4,19 +4,19 @@ import { displayTexts, OnboardingSteps } from "@/presentation/forms/components/F
 import Login from "./Login";
 
 const LoginContainer = () => {
-  const search = useSearchParams()
-  const [mfaToken, setMfaToken] = useState('')
-  const [isFirstLogin, setIsFirstLogin] = useState(false)
-  const [display, setDisplay] = useState(displayTexts[OnboardingSteps.LOGIN])
+  const search = useSearchParams();
+  const [mfaToken, setMfaToken] = useState("");
+  const [isFirstLogin, setIsFirstLogin] = useState(false);
+  const [display, setDisplay] = useState(displayTexts[OnboardingSteps.LOGIN]);
 
-  const flow = useMemo(() => search.get('flow') ?? '', [search])
-  const handleResetMfaToken = () => setMfaToken('')
+  const flow = useMemo(() => search.get("flow") ?? "", [search]);
+  const handleResetMfaToken = () => setMfaToken("");
 
   useEffect(() => {
-    if (flow === 'forgot') {
-      setDisplay(displayTexts[OnboardingSteps.LOGIN_FORGOT])
+    if (flow === "forgot") {
+      setDisplay(displayTexts[OnboardingSteps.LOGIN_FORGOT]);
     }
-  }, [flow])
+  }, [flow]);
 
   return (
     <Login
@@ -29,7 +29,7 @@ const LoginContainer = () => {
       setIsFirstLogin={setIsFirstLogin}
       onResetMfaToken={handleResetMfaToken}
     />
-  )
-}
+  );
+};
 
-export default LoginContainer
+export default LoginContainer;

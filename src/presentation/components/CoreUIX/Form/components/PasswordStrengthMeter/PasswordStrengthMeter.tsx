@@ -1,14 +1,14 @@
-import PasswordStrengthMeterItem from "./components/PasswordStrengthMeterItem"
-import ProgressIndicator from "./components/ProgressIndicator/ProgressIndicator"
+import PasswordStrengthMeterItem from "./components/PasswordStrengthMeterItem";
+import ProgressIndicator from "./components/ProgressIndicator/ProgressIndicator";
 
 type Props = {
-  includesAnLowerCaseAndNumber: boolean
-  includesAnUpperCase: boolean
-  hasSpecialCharacter: boolean
-  hasMinCharacters: boolean
-  isMatchPassword: boolean
-  progressValue: number
-}
+  includesAnLowerCaseAndNumber: boolean;
+  includesAnUpperCase: boolean;
+  hasSpecialCharacter: boolean;
+  hasMinCharacters: boolean;
+  isMatchPassword: boolean;
+  progressValue: number;
+};
 
 const PasswordStrengthMeter: React.FC<Props> = ({
   includesAnLowerCaseAndNumber,
@@ -19,7 +19,7 @@ const PasswordStrengthMeter: React.FC<Props> = ({
   progressValue,
 }) => {
   return (
-    <div className="flex flex-col items-start gap-2 w-full">
+    <div className="flex w-full flex-col items-start gap-2">
       <ProgressIndicator value={progressValue} />
       <div className="flex flex-col items-start gap-1">
         <PasswordStrengthMeterItem validator={includesAnUpperCase} text="Incluye al menos una letra mayúscula." />
@@ -29,7 +29,7 @@ const PasswordStrengthMeter: React.FC<Props> = ({
         <PasswordStrengthMeterItem validator={isMatchPassword} text="Las contraseñas coinciden." />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PasswordStrengthMeter
+export default PasswordStrengthMeter;

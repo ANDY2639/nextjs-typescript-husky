@@ -1,7 +1,7 @@
 type MfaToken = {
-  mfaToken: string
-  email: string
-  phoneNumber: string
-}
+  mfaToken: string;
+  email: string;
+  phoneNumber: string;
+};
 
 export default MfaToken;

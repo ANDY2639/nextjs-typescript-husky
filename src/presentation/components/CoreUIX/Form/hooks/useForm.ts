@@ -6,7 +6,7 @@ import React from "react";
 const useForm = <T>(config: {
   initialValues: T;
   onSubmit: (values: T) => void | Promise<void>;
-  validationSchema?: Yup.ObjectSchema<{[key: string]: any}>;
+  validationSchema?: Yup.ObjectSchema<{ [key: string]: any }>;
   validateOnBlur?: boolean;
   validateOnChange?: boolean;
   clearAlert?: () => void;
@@ -25,13 +25,14 @@ const useForm = <T>(config: {
   clearError: (name: string | string[]) => void;
   dirty: boolean;
 } => {
-  const { values, errors, isValid, isSubmitting, setErrors, handleChange, handleSubmit, setFieldValue, resetForm, setValues, submitForm, dirty } = useFormik({
-    onSubmit: config.onSubmit,
-    initialValues: config.initialValues as any,
-    validateOnBlur: config.validateOnBlur,
-    validateOnChange: config.validateOnChange,
-    validationSchema: config.validationSchema,
-  });
+  const { values, errors, isValid, isSubmitting, setErrors, handleChange, handleSubmit, setFieldValue, resetForm, setValues, submitForm, dirty } =
+    useFormik({
+      onSubmit: config.onSubmit,
+      initialValues: config.initialValues as any,
+      validateOnBlur: config.validateOnBlur,
+      validateOnChange: config.validateOnChange,
+      validationSchema: config.validationSchema,
+    });
 
   const clearError = (data: string | string[]) => {
     if (typeof data === "string") {

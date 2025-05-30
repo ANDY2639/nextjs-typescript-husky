@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const VerifyIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'VerifyIcon'}
-      data-test-id={id ?? 'VerifyIcon'}
+      id={id ?? "VerifyIcon"}
+      data-test-id={id ?? "VerifyIcon"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 79}
       height={height ?? 79}
@@ -17,7 +17,7 @@ const VerifyIcon = ({ id, width, height, ...rest }: Props) => {
         fill="#17C964"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default VerifyIcon
+export default VerifyIcon;

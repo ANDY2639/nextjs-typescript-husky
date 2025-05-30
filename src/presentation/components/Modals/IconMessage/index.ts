@@ -1,1 +1,1 @@
-export { default } from "./IconMessageContainer"
+export { default } from "./IconMessageContainer";

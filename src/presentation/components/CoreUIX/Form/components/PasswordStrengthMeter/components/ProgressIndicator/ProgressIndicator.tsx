@@ -2,20 +2,20 @@ import { useMemo } from "react";
 import { Progress } from "@heroui/react";
 
 type Props = {
-  value: number
-}
+  value: number;
+};
 
 const ProgressIndicator: React.FC<Props> = ({ value }) => {
   const { label, color } = useMemo((): { label: string; color: "danger" | "warning" | "primary" | "success" } => {
-    if (value < 30) return { label: "Débil", color: "danger" }
-    if (value < 60) return { label: "Medio", color: "warning" }
-    if (value < 90) return { label: "Fuerte", color: "primary" }
-    return { label: "Muy fuerte", color: "success" }
-  }, [value])
+    if (value < 30) return { label: "Débil", color: "danger" };
+    if (value < 60) return { label: "Medio", color: "warning" };
+    if (value < 90) return { label: "Fuerte", color: "primary" };
+    return { label: "Muy fuerte", color: "success" };
+  }, [value]);
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <p className="flex justify-between w-full">
+    <div className="flex w-full flex-col gap-2">
+      <p className="flex w-full justify-between">
         <span className="text-tiny font-medium">Seguridad:</span>
         <span className="text-tiny font-medium">{label}</span>
       </p>
@@ -28,7 +28,7 @@ const ProgressIndicator: React.FC<Props> = ({ value }) => {
         value={value}
       />
     </div>
-  )
-}
+  );
+};
 
-export default ProgressIndicator
+export default ProgressIndicator;

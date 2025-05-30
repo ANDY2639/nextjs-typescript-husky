@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const LetterUnreadIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'LetterUnreadIcon'}
-      data-test-id={id ?? 'LetterUnreadIcon'}
+      id={id ?? "LetterUnreadIcon"}
+      data-test-id={id ?? "LetterUnreadIcon"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 79}
       height={height ?? 79}
@@ -23,7 +23,7 @@ const LetterUnreadIcon = ({ id, width, height, ...rest }: Props) => {
         fill="#000"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default LetterUnreadIcon
+export default LetterUnreadIcon;

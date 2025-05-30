@@ -8,23 +8,21 @@ type Props = {
   mfaToken: string;
   setMfaToken: (mfaToken: string) => void;
   onResetMfaToken: VoidFunction;
-}
+};
 
 const ForgotPassword: React.FC<Props> = ({ display, mfaToken, setMfaToken, onResetMfaToken }) => {
   return (
-    <div className="flex flex-col max-w-[407px] gap-4 items-center justify-center md:h-screen p-8">
+    <div className="flex max-w-[407px] flex-col items-center justify-center gap-4 p-8 md:h-screen">
       <FormHeader display={display} />
-      <ForgotPasswordForm
-        mfaToken={mfaToken}
-        setMfaToken={setMfaToken}
-        onResetMfaToken={onResetMfaToken}
-      />
-      <p className="text-center text-small font-regular not-italic whitespace-nowrap text-ellipsis">
+      <ForgotPasswordForm mfaToken={mfaToken} setMfaToken={setMfaToken} onResetMfaToken={onResetMfaToken} />
+      <p className="text-small font-regular text-center text-ellipsis whitespace-nowrap not-italic">
         Volver al{" "}
-        <Link href="/login" className="text-primary">inicio de sesión</Link>
+        <Link href="/login" className="text-primary">
+          inicio de sesión
+        </Link>
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

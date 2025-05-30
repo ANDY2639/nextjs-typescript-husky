@@ -1,1 +1,1 @@
-export { default } from "./OnboardingLayoutContainer"
+export { default } from "./OnboardingLayoutContainer";

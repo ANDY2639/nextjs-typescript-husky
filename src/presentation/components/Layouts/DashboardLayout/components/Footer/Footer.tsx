@@ -1,4 +1,3 @@
-
 const Footer: React.FC = () => {
   return (
     <div className="mt-auto text-xs text-white">

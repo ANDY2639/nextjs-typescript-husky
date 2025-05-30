@@ -4,55 +4,55 @@ import { OtpFormValues } from "./OtpFormConfig";
 import OtpForm from "./OtpForm";
 
 type Props = {
-  otp: boolean
+  otp: boolean;
   onResendOtp: () => Promise<void>;
   onValidateOtp: (values: OtpFormValues) => Promise<void>;
   onResetMfaToken: () => void;
-}
+};
 
 const OtpFormContainer: React.FC<Props> = ({ otp, onValidateOtp, onResendOtp, onResetMfaToken }) => {
-  const OTP_DURATION_MINUTES = 3
+  const OTP_DURATION_MINUTES = 3;
   const [otpExpiredDate, setOtpExpiredDate] = useState<Date | null>(null);
-  const [enableResendOtp, setEnableResendOtp] = useState(false)
-  const [disabledForm, setDisabledForm] = useState(false)
-  const [isExpiredOtp, setIsExpiredOtp] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [enableResendOtp, setEnableResendOtp] = useState(false);
+  const [disabledForm, setDisabledForm] = useState(false);
+  const [isExpiredOtp, setIsExpiredOtp] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleValidateOtp = async (values: OtpFormValues) => {
     try {
-      await onValidateOtp(values)
+      await onValidateOtp(values);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleResendOtp = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       await onResendOtp();
-      setOtpExpiredDate(calculateExpirationDate(OTP_DURATION_MINUTES))
-      setDisabledForm(false)
-      setIsExpiredOtp(false)
-      setEnableResendOtp(false)
+      setOtpExpiredDate(calculateExpirationDate(OTP_DURATION_MINUTES));
+      setDisabledForm(false);
+      setIsExpiredOtp(false);
+      setEnableResendOtp(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleExpireOtp = () => {
-    setOtpExpiredDate(null)
-    setDisabledForm(true)
-    setIsExpiredOtp(true)
-    setEnableResendOtp(true)
-  }
+    setOtpExpiredDate(null);
+    setDisabledForm(true);
+    setIsExpiredOtp(true);
+    setEnableResendOtp(true);
+  };
 
   useEffect(() => {
     if (otp) {
-      setOtpExpiredDate(calculateExpirationDate(OTP_DURATION_MINUTES))
+      setOtpExpiredDate(calculateExpirationDate(OTP_DURATION_MINUTES));
     }
-  }, [otp])
+  }, [otp]);
 
   return (
     <OtpForm
@@ -67,8 +67,7 @@ const OtpFormContainer: React.FC<Props> = ({ otp, onValidateOtp, onResendOtp, on
       onResendOtp={handleResendOtp}
       onResetMfaToken={onResetMfaToken}
     />
-  )
-}
+  );
+};
 
-export default OtpFormContainer
-
+export default OtpFormContainer;

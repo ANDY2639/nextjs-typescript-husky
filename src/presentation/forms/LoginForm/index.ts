@@ -1,2 +1,2 @@
-export { default } from "./LoginFormContainer"
-export * from "./LoginFormConfig"
+export { default } from "./LoginFormContainer";
+export * from "./LoginFormConfig";

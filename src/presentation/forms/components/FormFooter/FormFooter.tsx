@@ -1,14 +1,12 @@
 const FormFooter = () => {
   return (
     <div>
-      <p className="overflow-hidden text-center text-ellipsis whitespace-nowrap text-small not-italic font-normal">
-        ¿Necesitas ayuda?
-      </p>
-      <p className="overflow-hidden text-center text-ellipsis whitespace-nowrap text-small not-italic font-normal">
+      <p className="text-small overflow-hidden text-center font-normal text-ellipsis whitespace-nowrap not-italic">¿Necesitas ayuda?</p>
+      <p className="text-small overflow-hidden text-center font-normal text-ellipsis whitespace-nowrap not-italic">
         Comunícate con el asesor asignado.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default FormFooter
+export default FormFooter;

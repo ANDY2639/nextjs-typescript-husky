@@ -1,1 +1,1 @@
-export { default } from "./ForgotPasswordContainer"
+export { default } from "./ForgotPasswordContainer";

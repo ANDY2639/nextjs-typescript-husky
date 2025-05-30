@@ -1,2 +1,2 @@
-export { default } from "./Countdown"
-export * from "./CountdownConfig"
+export { default } from "./Countdown";
+export * from "./CountdownConfig";

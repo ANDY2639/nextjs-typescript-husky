@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const UserBlockIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'UserBlockIcon'}
-      data-test-id={id ?? 'UserBlockIcon'}
+      id={id ?? "UserBlockIcon"}
+      data-test-id={id ?? "UserBlockIcon"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 79}
       height={height ?? 79}
@@ -23,7 +23,7 @@ const UserBlockIcon = ({ id, width, height, ...rest }: Props) => {
         fill="#18181B"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default UserBlockIcon
+export default UserBlockIcon;

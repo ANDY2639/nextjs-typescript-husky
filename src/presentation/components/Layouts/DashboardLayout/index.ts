@@ -1,1 +1,1 @@
-export { default } from "./DashboardLayoutContainer"
+export { default } from "./DashboardLayoutContainer";

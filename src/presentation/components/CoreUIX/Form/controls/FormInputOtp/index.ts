@@ -1,1 +1,1 @@
-export { default } from "./FormInputOtp"
+export { default } from "./FormInputOtp";

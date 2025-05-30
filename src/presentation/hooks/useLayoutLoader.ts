@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useCallback, useState } from "react";
 import { useAppDispatch } from "./useStore";
@@ -15,18 +15,18 @@ const useLayoutLoader = () => {
   const loadLayout = useCallback(async () => {
     setIsLoading(true);
     try {
-      const userState = await initialLoadUC.startSession()
-      dispatch(startSession(userState))
+      const userState = await initialLoadUC.startSession();
+      dispatch(startSession(userState));
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
-      console.log(e.message)
+      console.log(e.message);
     } finally {
       setIsLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return { isLoading, loadLayout };
-}
+};
 
-export default useLayoutLoader
+export default useLayoutLoader;

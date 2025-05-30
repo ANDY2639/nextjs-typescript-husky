@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const MinusCircleIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'MinusCircleIcon'}
-      data-test-id={id ?? 'MinusCircleIcon'}
+      id={id ?? "MinusCircleIcon"}
+      data-test-id={id ?? "MinusCircleIcon"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 12}
       height={height ?? 12}
@@ -22,7 +22,7 @@ const MinusCircleIcon = ({ id, width, height, ...rest }: Props) => {
         </clipPath>
       </defs>
     </svg>
-  )
-}
+  );
+};
 
-export default MinusCircleIcon
+export default MinusCircleIcon;

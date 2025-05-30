@@ -1,25 +1,21 @@
-import FormInput from "@/presentation/components/CoreUIX/Form/controls/FormInput"
-import FormButton from "@/presentation/components/CoreUIX/Form/controls/FormButton"
-import FormProvider from "@/presentation/components/CoreUIX/Form/context/FormProvider"
-import FormPasswordInput from "@/presentation/components/CoreUIX/Form/controls/FormInputPassword"
-import { loginFormValidationSchema, LoginFormValues, loginInitialValues } from "./LoginFormConfig"
+import FormInput from "@/presentation/components/CoreUIX/Form/controls/FormInput";
+import FormButton from "@/presentation/components/CoreUIX/Form/controls/FormButton";
+import FormProvider from "@/presentation/components/CoreUIX/Form/context/FormProvider";
+import FormPasswordInput from "@/presentation/components/CoreUIX/Form/controls/FormInputPassword";
+import { loginFormValidationSchema, LoginFormValues, loginInitialValues } from "./LoginFormConfig";
 
 type Props = {
-  flow: string
-  isSubmit: boolean
-  onForgotPassword: () => void
-  onSubmit: (values: LoginFormValues) => void
-}
+  flow: string;
+  isSubmit: boolean;
+  onForgotPassword: () => void;
+  onSubmit: (values: LoginFormValues) => void;
+};
 
 const LoginForm: React.FC<Props> = ({ flow, isSubmit, onSubmit, onForgotPassword }) => {
-  const labelTemp = flow === "forgot" ? "temporal" : ""
+  const labelTemp = flow === "forgot" ? "temporal" : "";
 
   return (
-    <FormProvider
-      initialValues={loginInitialValues}
-      validationSchema={loginFormValidationSchema}
-      onSubmit={onSubmit}
-    >
+    <FormProvider initialValues={loginInitialValues} validationSchema={loginFormValidationSchema} onSubmit={onSubmit}>
       <FormInput
         id="username"
         name="username"
@@ -42,12 +38,11 @@ const LoginForm: React.FC<Props> = ({ flow, isSubmit, onSubmit, onForgotPassword
           onClick: onForgotPassword,
         }}
       />
-      <FormButton
-        isLoading={isSubmit}
-        disabled={(values: LoginFormValues) => !values.username || !values.password}
-      >Ingresar</FormButton>
+      <FormButton isLoading={isSubmit} disabled={(values: LoginFormValues) => !values.username || !values.password}>
+        Ingresar
+      </FormButton>
     </FormProvider>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

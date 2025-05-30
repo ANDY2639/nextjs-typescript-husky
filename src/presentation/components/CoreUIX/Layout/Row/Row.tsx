@@ -9,10 +9,7 @@ type Props = {
 
 const Row = ({ children, gap = "md", className, ...rest }: Props) => {
   return (
-    <div
-      className={clsx(RowStyles(gap), className)}
-      {...rest}
-    >
+    <div className={clsx(RowStyles(gap), className)} {...rest}>
       {children}
     </div>
   );

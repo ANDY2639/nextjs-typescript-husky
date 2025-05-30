@@ -8,7 +8,4 @@ const gapMap: Record<string, string> = {
   xl: "gap-8",
 };
 
-export const RowStyles = (gap: "sm" | "md" | "lg" | "xl" | "none" | undefined) => clsx(
-  "flex flex-wrap w-full",
-  gap && gapMap[gap],
-)
+export const RowStyles = (gap: "sm" | "md" | "lg" | "xl" | "none" | undefined) => clsx("flex flex-wrap w-full", gap && gapMap[gap]);

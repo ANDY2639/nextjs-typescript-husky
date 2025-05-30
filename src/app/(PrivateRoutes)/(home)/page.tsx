@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Home from "@/presentation/pages/Home"
+import Home from "@/presentation/pages/Home";
 
-export const runtime = 'edge'
+export const runtime = "edge";
 export default function HomePage() {
-  return <Home />
+  return <Home />;
 }

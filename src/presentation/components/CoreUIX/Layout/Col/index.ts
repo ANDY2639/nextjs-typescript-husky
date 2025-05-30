@@ -1,2 +1,2 @@
-export { default } from "./Col"
-export type { ColSizing } from "./Col"
+export { default } from "./Col";
+export type { ColSizing } from "./Col";

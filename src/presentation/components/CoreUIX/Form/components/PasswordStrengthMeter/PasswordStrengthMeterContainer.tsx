@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
-import PasswordStrengthMeter from './PasswordStrengthMeter'
-import FormContext from '../../context/FormContext';
+import { useContext, useEffect, useState } from "react";
+import PasswordStrengthMeter from "./PasswordStrengthMeter";
+import FormContext from "../../context/FormContext";
 
 const PasswordStrengthMeterContainer = () => {
   const [includesAnLowerCaseAndMinOneNumber, setIncludesAnLowerCaseAndMinOneNumber] = useState(false);
@@ -10,16 +10,12 @@ const PasswordStrengthMeterContainer = () => {
   const [isMatchPassword, setIsMatchPassword] = useState(false);
   const { values, setIsDisabledSubmit } = useContext(FormContext);
 
-  const TOTAL_CHECKS = 5
-  const passedChecks = [
-    includesAnLowerCaseAndMinOneNumber,
-    includesAnUpperCase,
-    hasSpecialCharacter,
-    hasMinCharacters,
-    isMatchPassword,
-  ].filter(Boolean).length
+  const TOTAL_CHECKS = 5;
+  const passedChecks = [includesAnLowerCaseAndMinOneNumber, includesAnUpperCase, hasSpecialCharacter, hasMinCharacters, isMatchPassword].filter(
+    Boolean,
+  ).length;
 
-  const progressValue = (passedChecks / TOTAL_CHECKS) * 100
+  const progressValue = (passedChecks / TOTAL_CHECKS) * 100;
 
   const verifyPassword = () => {
     const specialCharacterRx = /[!@#$%^&*.]/;
@@ -40,19 +36,13 @@ const PasswordStrengthMeterContainer = () => {
   }, [values]);
 
   useEffect(() => {
-    if (
-      includesAnLowerCaseAndMinOneNumber &&
-      includesAnUpperCase &&
-      hasMinCharacters &&
-      hasSpecialCharacter &&
-      isMatchPassword
-    ) {
+    if (includesAnLowerCaseAndMinOneNumber && includesAnUpperCase && hasMinCharacters && hasSpecialCharacter && isMatchPassword) {
       setIsDisabledSubmit(false);
     } else {
       setIsDisabledSubmit(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [includesAnLowerCaseAndMinOneNumber, includesAnUpperCase, hasMinCharacters, isMatchPassword])
+  }, [includesAnLowerCaseAndMinOneNumber, includesAnUpperCase, hasMinCharacters, isMatchPassword]);
 
   return (
     <PasswordStrengthMeter
@@ -63,7 +53,7 @@ const PasswordStrengthMeterContainer = () => {
       isMatchPassword={isMatchPassword}
       progressValue={progressValue}
     />
-  )
-}
+  );
+};
 
-export default PasswordStrengthMeterContainer
+export default PasswordStrengthMeterContainer;

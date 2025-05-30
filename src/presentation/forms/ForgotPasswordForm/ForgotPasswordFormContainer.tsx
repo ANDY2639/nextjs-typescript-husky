@@ -14,68 +14,57 @@ type Props = {
   mfaToken: string;
   setMfaToken: (mfaToken: string) => void;
   onResetMfaToken: VoidFunction;
-}
+};
 
 const ForgotPasswordFormContainer: React.FC<Props> = ({ mfaToken, setMfaToken, onResetMfaToken }) => {
-  const router = useRouter()
-  const { isSubmit } = use(FormContext)
-  const [resendPasswordCompleted, setResendPasswordCompleted] = useState(false)
-  const [forgotPasswordFormValues, setForgotPasswordFormValues] = useState(forgotPasswordInitialValues)
+  const router = useRouter();
+  const { isSubmit } = use(FormContext);
+  const [resendPasswordCompleted, setResendPasswordCompleted] = useState(false);
+  const [forgotPasswordFormValues, setForgotPasswordFormValues] = useState(forgotPasswordInitialValues);
   const onboardingUC = container.get<OnboardingUseCase>(UseCaseTypes.OnboardingUseCase);
 
   const handleSendRecoveryPasswordEmail = async (values: ForgotPasswordFormValues) => {
     try {
-      const response = await onboardingUC.sendRecoveryPasswordEmail(values.username)
-      setMfaToken(response.mfaToken)
-      setForgotPasswordFormValues(values)
+      const response = await onboardingUC.sendRecoveryPasswordEmail(values.username);
+      setMfaToken(response.mfaToken);
+      setForgotPasswordFormValues(values);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleResendLoginOtp = async (values: OtpFormValues) => {
     try {
-      const response = await onboardingUC.resendLoginOtp(values.otpCode)
+      const response = await onboardingUC.resendLoginOtp(values.otpCode);
       if (response) {
-        onResetMfaToken()
-        setResendPasswordCompleted(response)
+        onResetMfaToken();
+        setResendPasswordCompleted(response);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleResendOtp = async () => {
     try {
       if (forgotPasswordFormValues) {
-        const response = await onboardingUC.sendRecoveryPasswordEmail(forgotPasswordFormValues.username)
-        setMfaToken(response.mfaToken)
+        const response = await onboardingUC.sendRecoveryPasswordEmail(forgotPasswordFormValues.username);
+        setMfaToken(response.mfaToken);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleBeforeClose = () => {
-    setResendPasswordCompleted(false)
-    router.push('/login?flow=forgot')
-  }
+    setResendPasswordCompleted(false);
+    router.push("/login?flow=forgot");
+  };
 
   return (
     <>
-      <ForgotPassword
-        isSubmit={isSubmit}
-        onSubmit={handleSendRecoveryPasswordEmail}
-        onResetMfaToken={onResetMfaToken}
-      />
-      {mfaToken && (
-        <OtpForm
-          otp={!!mfaToken}
-          onResendOtp={handleResendOtp}
-          onValidateOtp={handleResendLoginOtp}
-          onResetMfaToken={onResetMfaToken}
-        />
-      )}
+      <ForgotPassword isSubmit={isSubmit} onSubmit={handleSendRecoveryPasswordEmail} onResetMfaToken={onResetMfaToken} />
+      {mfaToken && <OtpForm otp={!!mfaToken} onResendOtp={handleResendOtp} onValidateOtp={handleResendLoginOtp} onResetMfaToken={onResetMfaToken} />}
       {resendPasswordCompleted && (
         <IconMessage
           open={resendPasswordCompleted}
@@ -87,7 +76,7 @@ const ForgotPasswordFormContainer: React.FC<Props> = ({ mfaToken, setMfaToken, o
         />
       )}
     </>
-  )
-}
+  );
+};
 
-export default ForgotPasswordFormContainer
+export default ForgotPasswordFormContainer;

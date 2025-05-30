@@ -13,14 +13,12 @@ export type ColSizing = {
 
 type Props = {
   children: ReactNode;
-} & ColSizing & React.HTMLAttributes<HTMLDivElement>;
+} & ColSizing &
+  React.HTMLAttributes<HTMLDivElement>;
 
 const Col = ({ children, xs, sm, md, lg, xl, xxl, className, ...rest }: Props) => {
   return (
-    <div
-      className={clsx(colStyles(xs, sm, md, lg, xl, xxl), className)}
-      {...rest}
-    >
+    <div className={clsx(colStyles(xs, sm, md, lg, xl, xxl), className)} {...rest}>
       {children}
     </div>
   );

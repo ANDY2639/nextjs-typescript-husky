@@ -1,13 +1,13 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const HouseIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={ id ?? 'HouseIcon'}
-      data-test-id={ id ?? 'HouseIcon'}
+      id={id ?? "HouseIcon"}
+      data-test-id={id ?? "HouseIcon"}
       xmlns="http://www.w3.org/2000/svg"
-      width={ width ?? 20 }
-      height={ height ?? 17 }
+      width={width ?? 20}
+      height={height ?? 17}
       viewBox="0 0 20 17"
       fill="none"
       {...rest}
@@ -19,7 +19,7 @@ const HouseIcon = ({ id, width, height, ...rest }: Props) => {
         strokeWidth={0.125}
       />
     </svg>
-  )
-}
+  );
+};
 
-export default HouseIcon
+export default HouseIcon;

@@ -6,36 +6,22 @@ import { TitleAndSubtitle } from "@/presentation/forms/components/FormHeader/dis
 
 type Props = {
   flow: string;
-  display: TitleAndSubtitle
+  display: TitleAndSubtitle;
   isFirstLogin: boolean;
   mfaToken: string;
   setMfaToken: (mfaToken: string) => void;
   setDisplay: (display: TitleAndSubtitle) => void;
   setIsFirstLogin: (isFirstLogin: boolean) => void;
   onResetMfaToken: () => void;
-}
+};
 
-const Login: React.FC<Props> = ({
-  flow,
-  display,
-  setDisplay,
-  mfaToken,
-  setMfaToken,
-  isFirstLogin,
-  setIsFirstLogin,
-  onResetMfaToken,
-}) => {
+const Login: React.FC<Props> = ({ flow, display, setDisplay, mfaToken, setMfaToken, isFirstLogin, setIsFirstLogin, onResetMfaToken }) => {
   return (
     <>
-      <div className="flex flex-col max-w-[407px] gap-4 items-center justify-center md:h-screen p-8">
+      <div className="flex max-w-[407px] flex-col items-center justify-center gap-4 p-8 md:h-screen">
         <FormHeader display={display} />
         {isFirstLogin ? (
-          <ActivePasswordForm
-            flow={flow}
-            mfaToken={mfaToken}
-            setMfaToken={setMfaToken}
-            onResetMfaToken={onResetMfaToken}
-          />
+          <ActivePasswordForm flow={flow} mfaToken={mfaToken} setMfaToken={setMfaToken} onResetMfaToken={onResetMfaToken} />
         ) : (
           <LoginForm
             flow={flow}
@@ -50,6 +36,6 @@ const Login: React.FC<Props> = ({
       </div>
     </>
   );
-}
+};
 
 export default Login;

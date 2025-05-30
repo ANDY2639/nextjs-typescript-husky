@@ -1,2 +1,2 @@
-export { default } from "./ActivePasswordFormContainer"
-export * from "./ActivePasswordFormConfig"
+export { default } from "./ActivePasswordFormContainer";
+export * from "./ActivePasswordFormConfig";

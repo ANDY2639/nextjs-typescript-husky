@@ -1,100 +1,106 @@
-import { injectable, inject } from "inversify"
-import type IAuthRepository from "@/domain/repository/Auth/IAuthRepository"
-import AccessToken from "@/domain/entity/Token/AccessToken"
-import MfaToken from "@/domain/entity/Token/MfaToken"
-import MfaTokenService from "@/domain/services/MfaTokenService"
-import AccessTokenService from "@/domain/services/AccessTokenService"
-import CredentialsService from "@/domain/services/CredentialsService"
-import RepositoryTypes from "@/domain/entity/Types/RepositoryTypes"
+import { injectable, inject } from "inversify";
+import type IAuthRepository from "@/domain/repository/Auth/IAuthRepository";
+import AccessToken from "@/domain/entity/Token/AccessToken";
+import MfaToken from "@/domain/entity/Token/MfaToken";
+import MfaTokenService from "@/domain/services/MfaTokenService";
+import AccessTokenService from "@/domain/services/AccessTokenService";
+import CredentialsService from "@/domain/services/CredentialsService";
+import RepositoryTypes from "@/domain/entity/Types/RepositoryTypes";
 
 @injectable()
 export default class OnboardingUseCase {
-  private readonly authRepository: IAuthRepository
+  private readonly authRepository: IAuthRepository;
 
   constructor(@inject(RepositoryTypes.AuthRepository) authRepository: IAuthRepository) {
-    this.authRepository = authRepository
+    this.authRepository = authRepository;
   }
 
   private getLocalMfaToken(): MfaToken {
-    const mfaToken = MfaTokenService.getToken()
+    const mfaToken = MfaTokenService.getToken();
     if (mfaToken) {
-      return mfaToken
+      return mfaToken;
     }
-    throw new Error("MfaToken not found")
+    throw new Error("MfaToken not found");
   }
 
   async requestLoginOtp(username: string, password: string): Promise<MfaToken> {
-    const { encryptedUsername, encryptedPassword } = CredentialsService.encryptCredentials(username, password)
+    const { encryptedUsername, encryptedPassword } = CredentialsService.encryptCredentials(username, password);
 
-    const result = await this.authRepository.requestLoginOtp(encryptedUsername, encryptedPassword)
+    const result = await this.authRepository.requestLoginOtp(encryptedUsername, encryptedPassword);
 
-    MfaTokenService.setToken(result)
-    return result
+    MfaTokenService.setToken(result);
+    return result;
   }
 
   async verifyLoginOtp(mfaCode: string): Promise<AccessToken> {
-    const mfaToken = this.getLocalMfaToken()
-    const storedCredentials = CredentialsService.getStoredCredentials()
+    const mfaToken = this.getLocalMfaToken();
+    const storedCredentials = CredentialsService.getStoredCredentials();
     if (!storedCredentials) {
-      throw new Error("Forbidden")
+      throw new Error("Forbidden");
     }
-    const { encryptedUsername, encryptedPassword } = storedCredentials
+    const { encryptedUsername, encryptedPassword } = storedCredentials;
 
-    const response = await this.authRepository.verifyLoginOtp(encryptedUsername, encryptedPassword, mfaToken.mfaToken, mfaCode)
+    const response = await this.authRepository.verifyLoginOtp(encryptedUsername, encryptedPassword, mfaToken.mfaToken, mfaCode);
 
-    AccessTokenService.setToken(response)
+    AccessTokenService.setToken(response);
 
-    return response
+    return response;
   }
 
   async requestPasswordResetOtp(newPassword: string): Promise<MfaToken> {
-    const storedCredentials = CredentialsService.encryptPasswordChangeCredentials(newPassword)
+    const storedCredentials = CredentialsService.encryptPasswordChangeCredentials(newPassword);
     if (!storedCredentials) {
-      throw new Error("Forbidden")
+      throw new Error("Forbidden");
     }
-    const { encryptedUsername, encryptedPassword, encryptedNewPassword } = storedCredentials
+    const { encryptedUsername, encryptedPassword, encryptedNewPassword } = storedCredentials;
 
-    const result = await this.authRepository.requestPasswordResetOtp(encryptedUsername, encryptedPassword, encryptedNewPassword)
+    const result = await this.authRepository.requestPasswordResetOtp(encryptedUsername, encryptedPassword, encryptedNewPassword);
 
-    MfaTokenService.setToken(result)
+    MfaTokenService.setToken(result);
 
-    return result
+    return result;
   }
 
   async verifyResetPasswordOtp(mfaCode: string): Promise<AccessToken> {
-    const mfaToken = this.getLocalMfaToken()
-    const storedCredentials = CredentialsService.getStoredPasswordChangeCredentials()
+    const mfaToken = this.getLocalMfaToken();
+    const storedCredentials = CredentialsService.getStoredPasswordChangeCredentials();
     if (!storedCredentials) {
-      throw new Error("Forbidden")
+      throw new Error("Forbidden");
     }
-    const { encryptedUsername, encryptedPassword, encryptedNewPassword } = storedCredentials
+    const { encryptedUsername, encryptedPassword, encryptedNewPassword } = storedCredentials;
 
-    const response = await this.authRepository.verifyResetPasswordOtp(encryptedUsername, encryptedPassword, encryptedNewPassword, mfaToken.mfaToken, mfaCode)
+    const response = await this.authRepository.verifyResetPasswordOtp(
+      encryptedUsername,
+      encryptedPassword,
+      encryptedNewPassword,
+      mfaToken.mfaToken,
+      mfaCode,
+    );
 
-    AccessTokenService.setToken(response)
+    AccessTokenService.setToken(response);
 
-    return response
+    return response;
   }
 
   async sendRecoveryPasswordEmail(username: string): Promise<MfaToken> {
-    const { encryptedUsername } = CredentialsService.encryptUsernameCredentials(username)
+    const { encryptedUsername } = CredentialsService.encryptUsernameCredentials(username);
 
-    const result = await this.authRepository.sendRecoveryPasswordEmail(encryptedUsername)
+    const result = await this.authRepository.sendRecoveryPasswordEmail(encryptedUsername);
 
-    MfaTokenService.setToken(result)
-    return result
+    MfaTokenService.setToken(result);
+    return result;
   }
 
   async resendLoginOtp(mfaCode: string): Promise<boolean> {
-    const mfaToken = this.getLocalMfaToken()
-    const storedCredentials = CredentialsService.getStoredUsernameCredentials()
+    const mfaToken = this.getLocalMfaToken();
+    const storedCredentials = CredentialsService.getStoredUsernameCredentials();
     if (!storedCredentials) {
-      throw new Error("Forbidden")
+      throw new Error("Forbidden");
     }
-    const { encryptedUsername } = storedCredentials
+    const { encryptedUsername } = storedCredentials;
 
-    const response = await this.authRepository.resendLoginOtp(encryptedUsername, mfaToken.mfaToken, mfaCode)
+    const response = await this.authRepository.resendLoginOtp(encryptedUsername, mfaToken.mfaToken, mfaCode);
 
-    return response
+    return response;
   }
 }

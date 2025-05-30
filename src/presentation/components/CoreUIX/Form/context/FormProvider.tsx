@@ -1,14 +1,9 @@
-"use client"
+"use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unnecessary-type-constraint */
-import React, {
-  ReactNode,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from "react";
+import React, { ReactNode, useImperativeHandle, useMemo, useState } from "react";
 import * as Yup from "yup";
 import { Form } from "@heroui/form";
 import useForm from "@/presentation/components/CoreUIX/Form/hooks/useForm";
@@ -28,17 +23,41 @@ type FormProviderProps<T> = {
   validationSchema?: Yup.ObjectSchema<any>;
   apiFieldErrors?: string[];
   isDisabledForm?: boolean;
-  data?: { [key: string]: string | string [] | number | boolean };
+  data?: { [key: string]: string | string[] | number | boolean };
   validOnChange?: boolean;
   onReset?: boolean;
   formRef?: React.RefObject<FormProviderMethods<T>>;
   clearAlert?: () => void;
 };
 
-const FormProvider = <T extends unknown>({ initialValues, onSubmit, validationSchema, children, apiFieldErrors, isDisabledForm, data, validOnChange, onReset, formRef, clearAlert }: FormProviderProps<T>) => {
+const FormProvider = <T extends unknown>({
+  initialValues,
+  onSubmit,
+  validationSchema,
+  children,
+  apiFieldErrors,
+  isDisabledForm,
+  data,
+  validOnChange,
+  onReset,
+  formRef,
+  clearAlert,
+}: FormProviderProps<T>) => {
   const [isDisabledSubmit, setIsDisabledSubmit] = useState(false);
 
-  const { values, errors, isSubmitting, onSubmit: handleSubmit, onChangeInput, onChangeField, onChangeTextArea, resetForm, setValues, submitForm, clearError } = useForm({
+  const {
+    values,
+    errors,
+    isSubmitting,
+    onSubmit: handleSubmit,
+    onChangeInput,
+    onChangeField,
+    onChangeTextArea,
+    resetForm,
+    setValues,
+    submitForm,
+    clearError,
+  } = useForm({
     initialValues,
     onSubmit: (values) => onSubmit(values),
     validateOnBlur: true,
@@ -56,7 +75,7 @@ const FormProvider = <T extends unknown>({ initialValues, onSubmit, validationSc
   }, [data]);
 
   useMemo(() => {
-    if(onReset) {
+    if (onReset) {
       resetForm();
     }
   }, [onReset]);
@@ -69,15 +88,16 @@ const FormProvider = <T extends unknown>({ initialValues, onSubmit, validationSc
 
   const setPartialValues = (partialValues: Record<string, any>) => {
     setValues({
-      ...values as any,
+      ...(values as any),
       ...partialValues,
     });
   };
 
-  const handleSubmitForm = isDisabledForm || isDisabledSubmit
+  const handleSubmitForm =
+    isDisabledForm || isDisabledSubmit
       ? (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-      }
+          e.preventDefault();
+        }
       : handleSubmit;
 
   return (
@@ -97,9 +117,7 @@ const FormProvider = <T extends unknown>({ initialValues, onSubmit, validationSc
       }}
     >
       <Form onSubmit={handleSubmitForm} className="w-full">
-        <Row>
-          {children}
-        </Row>
+        <Row>{children}</Row>
       </Form>
     </FormContext.Provider>
   );

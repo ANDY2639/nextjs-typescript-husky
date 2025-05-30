@@ -1,13 +1,13 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const OrdersIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'OrdersIcon'}
-      data-test-id={id ?? 'OrdersIcon'}
+      id={id ?? "OrdersIcon"}
+      data-test-id={id ?? "OrdersIcon"}
       xmlns="http://www.w3.org/2000/svg"
-      width={ width ?? 20 }
-      height={ height ?? 21 }
+      width={width ?? 20}
+      height={height ?? 21}
       viewBox="0 0 20 21"
       fill="none"
       {...rest}
@@ -19,7 +19,7 @@ const OrdersIcon = ({ id, width, height, ...rest }: Props) => {
         strokeWidth={0.125}
       />
     </svg>
-  )
-}
+  );
+};
 
-export default OrdersIcon
+export default OrdersIcon;

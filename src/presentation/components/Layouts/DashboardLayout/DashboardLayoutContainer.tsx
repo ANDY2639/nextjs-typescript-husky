@@ -1,34 +1,32 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import useLoggedUser from "@/presentation/hooks/useLoggedUser"
-import DashboardLayout from "./DashboardLayout"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import useLoggedUser from "@/presentation/hooks/useLoggedUser";
+import DashboardLayout from "./DashboardLayout";
 
 const DashboardLayoutContainer = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter()
-  const { isLogged } = useLoggedUser()
-  const [checkingSession, setCheckingSession] = useState(true)
+  const router = useRouter();
+  const { isLogged } = useLoggedUser();
+  const [checkingSession, setCheckingSession] = useState(true);
 
   useEffect(() => {
     if (!isLogged) {
-      router.push("/login")
+      router.push("/login");
     } else {
-      setCheckingSession(false)
+      setCheckingSession(false);
     }
-  }, [isLogged, router])
+  }, [isLogged, router]);
 
   if (checkingSession) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex h-screen items-center justify-center">
         <span className="text-primary-500 font-bold">Cargando...</span>
       </div>
-    )
+    );
   }
 
-  return (
-    <DashboardLayout>{children}</DashboardLayout>
-  )
-}
+  return <DashboardLayout>{children}</DashboardLayout>;
+};
 
-export default DashboardLayoutContainer
+export default DashboardLayoutContainer;

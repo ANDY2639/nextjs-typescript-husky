@@ -9,10 +9,23 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
 const eslintConfig = [
   ...compat.config({
+    ignorePatterns: [
+      "node_modules/**",
+      ".next/**",
+      ".cache/**",
+      "public/**",
+      "next-env.d.ts",
+      "next.config.ts",
+      "tsconfig.json",
+      "package-lock.json",
+      "package.json",
+      "yarn.lock",
+    ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
       ecmaVersion: "latest",
@@ -31,13 +44,19 @@ const eslintConfig = [
       "plugin:prettier/recommended",
       "plugin:react-hooks/recommended",
     ],
-    plugins: ["prettier", "@typescript-eslint", "react", "react-hooks"],
+    plugins: ["@typescript-eslint", "prettier", "react", "react-hooks"],
     rules: {
-      // React 17+ no requiere React en scope
-      'react/react-in-jsx-scope': 'off',
-
-      'prettier/prettier': 'warn',
+      'react/react-in-jsx-scope': 'off', // React 17+ no requiere React en scope
+      'react/prop-types': 'off',
+      'prettier/prettier': [
+        'error',
+        {
+          singleQuote: false,
+        }
+      ],
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-inferrable-types': 'off',
     },
     settings: {
       react: {

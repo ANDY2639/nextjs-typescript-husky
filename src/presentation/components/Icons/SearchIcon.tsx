@@ -1,16 +1,16 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const SearchIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'SearchIcon'}
-      data-test-id={id ?? 'SearchIcon'}
+      id={id ?? "SearchIcon"}
+      data-test-id={id ?? "SearchIcon"}
       xmlns="http://www.w3.org/2000/svg"
-      width={ width ?? 20 }
-      height={ height ?? 21 }
+      width={width ?? 20}
+      height={height ?? 21}
       viewBox="0 0 20 21"
       fill="none"
-      { ...rest }
+      {...rest}
     >
       <path
         d="M8.51 1.776a7.134 7.134 0 014.677 1.55l.261.216a7.135 7.135 0 012.355 4.329l.04.336a7.134 7.134 0 01-1.44 5.042l-.033.044.039.039 3.71 3.711.044-.043-.044.044.002.002h0a.878.878 0 01.06 1.176l-.06.064a.876.876 0 01-.205.153l-.078.037a.875.875 0 01-.892-.133l-.063-.057-3.714-3.714-.038-.04-.044.034a7.135 7.135 0 01-4.704 1.466l-.338-.026a7.135 7.135 0 01-4.436-2.146l-.23-.25A7.135 7.135 0 011.61 9.013l.003-.339a7.135 7.135 0 016.559-6.879l.339-.018zM9.8 3.64a5.376 5.376 0 00-2.734.167l-.372.139c-.86.356-1.61.927-2.18 1.657l-.232.322a5.376 5.376 0 00-.906 2.987l.007.266a5.38 5.38 0 001.385 3.34l.184.192a5.38 5.38 0 003.532 1.57l.267.006a5.376 5.376 0 004.8-2.956l.166-.362c.356-.86.482-1.794.369-2.713l-.064-.392a5.374 5.374 0 00-3.836-4.131L9.8 3.64z"
@@ -19,7 +19,7 @@ const SearchIcon = ({ id, width, height, ...rest }: Props) => {
         strokeWidth={0.125}
       />
     </svg>
-  )
-}
+  );
+};
 
-export default SearchIcon
+export default SearchIcon;

@@ -3,11 +3,11 @@ type Props = React.SVGProps<SVGSVGElement>;
 const ArrowDownIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'ArrowDownIcon'}
-      data-test-id={id ?? 'ArrowDownIcon'}
+      id={id ?? "ArrowDownIcon"}
+      data-test-id={id ?? "ArrowDownIcon"}
       xmlns="http://www.w3.org/2000/svg"
-      width={ width ?? 20 }
-      height={ height ?? 21 }
+      width={width ?? 20}
+      height={height ?? 21}
       viewBox="0 0 20 21"
       fill="none"
       {...rest}
@@ -19,7 +19,7 @@ const ArrowDownIcon = ({ id, width, height, ...rest }: Props) => {
         fill="#FAFAFA"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default ArrowDownIcon
+export default ArrowDownIcon;

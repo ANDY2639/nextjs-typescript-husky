@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const CloudCrossIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'CloudCrossIcon'}
-      data-test-id={id ?? 'CloudCrossIcon'}
+      id={id ?? "CloudCrossIcon"}
+      data-test-id={id ?? "CloudCrossIcon"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 79}
       height={height ?? 79}
@@ -23,7 +23,7 @@ const CloudCrossIcon = ({ id, width, height, ...rest }: Props) => {
         fill="#18181B"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default CloudCrossIcon
+export default CloudCrossIcon;

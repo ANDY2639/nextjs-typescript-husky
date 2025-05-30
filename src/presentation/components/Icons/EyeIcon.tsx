@@ -1,10 +1,10 @@
-type Props = React.SVGProps<SVGSVGElement>
+type Props = React.SVGProps<SVGSVGElement>;
 
 const EyeIcon = ({ id, width, height, ...rest }: Props) => {
   return (
     <svg
-      id={id ?? 'Eye'}
-      data-test-id={id ?? 'Eye'}
+      id={id ?? "Eye"}
+      data-test-id={id ?? "Eye"}
       xmlns="http://www.w3.org/2000/svg"
       width={width ?? 20}
       height={height ?? 20}
@@ -18,13 +18,9 @@ const EyeIcon = ({ id, width, height, ...rest }: Props) => {
         stroke="#18181B"
         strokeWidth={1.5}
       />
-      <path
-        d="M12.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
-        stroke="#18181B"
-        strokeWidth={1.5}
-      />
+      <path d="M12.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" stroke="#18181B" strokeWidth={1.5} />
     </svg>
-  )
-}
+  );
+};
 
-export default EyeIcon
+export default EyeIcon;

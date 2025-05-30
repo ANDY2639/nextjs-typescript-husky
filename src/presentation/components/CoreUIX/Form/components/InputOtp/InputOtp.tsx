@@ -1,17 +1,12 @@
-import { InputOtp, InputOtpProps } from '@heroui/react'
-import React from 'react'
+import { InputOtp, InputOtpProps } from "@heroui/react";
+import React from "react";
 
 export interface BaseInputOtpProps extends InputOtpProps {
-  name: string
+  name: string;
 }
 
 const BaseInputOtp: React.FC<BaseInputOtpProps> = ({ name, ...props }) => {
-  return (
-    <InputOtp
-      data-id={name}
-      {...props}
-    />
-  )
-}
+  return <InputOtp data-id={name} {...props} />;
+};
 
-export default BaseInputOtp
+export default BaseInputOtp;

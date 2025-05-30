@@ -6,8 +6,8 @@ export type LoginFormValues = {
 };
 
 export const loginInitialValues: LoginFormValues = {
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 };
 
 export const loginFormValidationSchema = Yup.object().shape({
