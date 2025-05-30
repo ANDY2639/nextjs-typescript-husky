@@ -17,24 +17,22 @@ type Props = {
 
 const Login: React.FC<Props> = ({ flow, display, setDisplay, mfaToken, setMfaToken, isFirstLogin, setIsFirstLogin, onResetMfaToken }) => {
   return (
-    <>
-      <div className="flex max-w-[407px] flex-col items-center justify-center gap-4 p-8 md:h-screen">
-        <FormHeader display={display} />
-        {isFirstLogin ? (
-          <ActivePasswordForm flow={flow} mfaToken={mfaToken} setMfaToken={setMfaToken} onResetMfaToken={onResetMfaToken} />
-        ) : (
-          <LoginForm
-            flow={flow}
-            mfaToken={mfaToken}
-            setMfaToken={setMfaToken}
-            setDisplay={setDisplay}
-            setIsFirstLogin={setIsFirstLogin}
-            onResetMfaToken={onResetMfaToken}
-          />
-        )}
-        <FormFooter />
-      </div>
-    </>
+    <div className="flex max-w-[407px] flex-col items-center justify-center gap-4 p-8 md:h-screen">
+      <FormHeader display={display} />
+      {isFirstLogin ? (
+        <ActivePasswordForm flow={flow} mfaToken={mfaToken} setMfaToken={setMfaToken} onResetMfaToken={onResetMfaToken} />
+      ) : (
+        <LoginForm
+          flow={flow}
+          mfaToken={mfaToken}
+          setMfaToken={setMfaToken}
+          setDisplay={setDisplay}
+          setIsFirstLogin={setIsFirstLogin}
+          onResetMfaToken={onResetMfaToken}
+        />
+      )}
+      <FormFooter />
+    </div>
   );
 };
 

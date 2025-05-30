@@ -25,6 +25,8 @@ const eslintConfig = [
       "package-lock.json",
       "package.json",
       "yarn.lock",
+      "postcss.config.mjs",
+      ".prettierrc",
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
@@ -54,8 +56,7 @@ const eslintConfig = [
           singleQuote: false,
         }
       ],
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-inferrable-types': 'off',
     },
     settings: {

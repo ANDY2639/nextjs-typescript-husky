@@ -1,1 +1,37 @@
-yarn lint-staged
+echo '🎨 Corriendo Prettier y ESLint sobre archivos staged...'
+
+# Archivos staged relevantes
+PRETTIER_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|ts|jsx|tsx|json|css|md|yml)$' | sed 's| |\\ |g')
+ESLINT_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|ts|jsx|tsx)$' | sed 's| |\\ |g')
+
+# Bandera de error
+HAS_ERROR=0
+
+# Aplica Prettier
+if [ -n "$PRETTIER_FILES" ]; then
+  echo '🖌 Formateando con Prettier...'
+  prettier $PRETTIER_FILES --write --ignore-unknown || {
+    echo '❌ Error: Prettier encontró problemas que no pudo corregir.'
+    HAS_ERROR=1
+  }
+fi
+
+# Aplica ESLint
+if [ -n "$ESLINT_FILES" ]; then
+  echo '🧹 Corriendo ESLint...'
+  eslint $ESLINT_FILES --fix || {
+    echo '❌ Error: ESLint encontró errores que no pudo corregir automáticamente.'
+    HAS_ERROR=1
+  }
+fi
+
+# Si hubo errores, cancela el commit
+if [ $HAS_ERROR -ne 0 ]; then
+  echo '⛔ Commit abortado por errores de lint o formato.'
+  exit 1
+fi
+
+# Reindexa los archivos modificados
+echo "$PRETTIER_FILES" "$ESLINT_FILES" | xargs git add
+
+echo '✅ Archivos formateados, corregidos y listos para commit.'

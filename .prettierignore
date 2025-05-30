@@ -7,3 +7,4 @@ next.config.ts
 package-lock.json
 yarn.lock
 eslint.config.mjs
+postcss.config.mjs
