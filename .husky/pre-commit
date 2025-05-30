@@ -1,37 +1,37 @@
-echo '🎨 Corriendo Prettier y ESLint sobre archivos staged...'
+echo '🎨 Running Prettier and ESLint on staged files...'
 
-# Archivos staged relevantes
+# Relevant staged files
 PRETTIER_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|ts|jsx|tsx|json|css|md|yml)$' | sed 's| |\\ |g')
 ESLINT_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|ts|jsx|tsx)$' | sed 's| |\\ |g')
 
-# Bandera de error
+# Error flag
 HAS_ERROR=0
 
-# Aplica Prettier
+# Apply Prettier
 if [ -n "$PRETTIER_FILES" ]; then
-  echo '🖌 Formateando con Prettier...'
+  echo '🖌 Formatting with Prettier...'
   prettier $PRETTIER_FILES --write --ignore-unknown || {
-    echo '❌ Error: Prettier encontró problemas que no pudo corregir.'
+    echo "❌ Error: Prettier found problems that he couldn't correct.."
     HAS_ERROR=1
   }
 fi
 
-# Aplica ESLint
+# Apply ESLint
 if [ -n "$ESLINT_FILES" ]; then
   echo '🧹 Corriendo ESLint...'
   eslint $ESLINT_FILES --fix || {
-    echo '❌ Error: ESLint encontró errores que no pudo corregir automáticamente.'
+    echo '❌ Error: ESLint found errors that it could not automatically correct.'
     HAS_ERROR=1
   }
 fi
 
-# Si hubo errores, cancela el commit
+# If there were errors, cancel the commit
 if [ $HAS_ERROR -ne 0 ]; then
-  echo '⛔ Commit abortado por errores de lint o formato.'
+  echo '⛔ Commit aborted due to lint or formatting errors.'
   exit 1
 fi
 
-# Reindexa los archivos modificados
+# Reindexes modified files
 echo "$PRETTIER_FILES" "$ESLINT_FILES" | xargs git add
 
-echo '✅ Archivos formateados, corregidos y listos para commit.'
+echo '✅ Files formatted, fixed, and ready for commit.'
